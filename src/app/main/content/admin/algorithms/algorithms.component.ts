@@ -54,11 +54,11 @@ export class AlgorithmsComponent implements OnInit {
 
 
 const ELEMENT_DATA: Algorithm[] = [
-  new Algorithm ( 1, "Hydrogen", "H" ),
-  new Algorithm ( 2, "Hydrogen", "H" ),
-  new Algorithm ( 3, "Hydrogen", "H" ),
-  new Algorithm ( 4, "Hydrogen", "H" ),
-  new Algorithm ( 5, "Hydrogen", "H" ),
-  new Algorithm ( 6, "Hydrogen", "H" ),
+  new Algorithm ( 1, "Algo1", "Algo1" ),
+  new Algorithm ( 2, "Algo2", "Algo2" ),
+  new Algorithm ( 3, "Algo3", "Algo3" ),
+  new Algorithm ( 4, "Algo4", "Algo4" ),
+  new Algorithm ( 5, "Algo5", "Algo5" ),
+  new Algorithm ( 6, "Algo6", "Algo6" ),
   
 ];
