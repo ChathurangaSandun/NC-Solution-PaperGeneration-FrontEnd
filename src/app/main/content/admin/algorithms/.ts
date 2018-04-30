@@ -13,6 +13,7 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 import { fuseAnimations } from "@fuse/animations";
 import { FuseUtils } from "@fuse/utils";
+import { Algorithm } from "../algorithm/algorithm.model";
 
 @Component({
   selector: "app-algorithms",
@@ -24,13 +25,17 @@ export class AlgorithmsComponent implements OnInit {
   // dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   displayedColumns = ["id", "name", "description"];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource = new MatTableDataSource(ELEMENT_DATA);  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild("filter") filter: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {}
+  constructor() 
+  {
+    console.log(ELEMENT_DATA);
+
+  }
 
   ngOnInit() {}
 }
@@ -47,17 +52,13 @@ export class AlgorithmsComponent implements OnInit {
 
 // ];
 
-export interface Element {
-  name: string;
-  id: number;
-  description: string;
-}
 
-const ELEMENT_DATA: Element[] = [
-  { id: 1, name: "Hydrogen", description: "H" },
-  { id: 2, name: "Helium", description: "He" },
-  { id: 3, name: "Lithium", description: "Li" },
-  { id: 4, name: "Beryllium", description: "Be" },
-  { id: 5, name: "Boron", description: "B" },
-  { id: 6, name: "Carbon", description: "C" }
+const ELEMENT_DATA: Algorithm[] = [
+  new Algorithm ( 1, "Hydrogen", "H" ),
+  new Algorithm ( 2, "Hydrogen", "H" ),
+  new Algorithm ( 3, "Hydrogen", "H" ),
+  new Algorithm ( 4, "Hydrogen", "H" ),
+  new Algorithm ( 5, "Hydrogen", "H" ),
+  new Algorithm ( 6, "Hydrogen", "H" ),
+  
 ];
