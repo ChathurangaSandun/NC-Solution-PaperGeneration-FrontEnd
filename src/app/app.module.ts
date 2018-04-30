@@ -21,9 +21,15 @@ import { AuthenticationModule } from './main/authentication/authentication.modul
 
 const appRoutes: Routes = [   
     {
-        path      : '**',
-        redirectTo: 'sample'
-    },
+        path      : '',
+        redirectTo: 'admin/algorithms',
+        pathMatch: 'full'
+
+     },
+    // {
+    //     path      : '',
+    //     redirectTo: 'sample'
+    // },
     {
         path      : 'admin', 
         loadChildren: './main/content/admin/admin.module#AdminModule'
