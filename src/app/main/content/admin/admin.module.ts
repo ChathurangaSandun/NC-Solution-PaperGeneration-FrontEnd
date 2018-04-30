@@ -12,19 +12,17 @@ import { MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, Mat
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AgmCoreModule } from '@agm/core';
 
-
-
-
 import { AlgorithmComponent } from './algorithm/algorithm.component';
 import { ChaptersComponent } from './chapters/chapters.component';
 import { SectionsComponent } from './sections/sections.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { ExamtypesComponent } from './examtypes/examtypes.component';
+import { AlgorithmsComponent } from './algorithms/algorithms.component';
 
 const routes = [
   {
       path     : 'admin/algorithms',
-      component: AlgorithmComponent      
+      component: AlgorithmsComponent      
   },
   {
     path     : 'admin/examtypes',
@@ -68,6 +66,6 @@ const routes = [
     
     FuseSharedModule,
   ],
-  declarations: [AlgorithmComponent, ChaptersComponent, SectionsComponent, QuestionsComponent, ExamtypesComponent]
+  declarations: [AlgorithmComponent, ChaptersComponent, SectionsComponent, QuestionsComponent, ExamtypesComponent, AlgorithmsComponent]
 })
 export class AdminModule { }
