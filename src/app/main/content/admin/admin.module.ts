@@ -18,11 +18,15 @@ import { SectionsComponent } from './sections/sections.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { ExamtypesComponent } from './examtypes/examtypes.component';
 import { AlgorithmsComponent } from './algorithms/algorithms.component';
+import { AlgorithmsService } from './algorithms/algorithms.service';
 
 const routes = [
   {
       path     : 'admin/algorithms',
-      component: AlgorithmsComponent      
+      component: AlgorithmsComponent      ,
+      resolve  : {
+        data: AlgorithmsService
+    }
   },
   {
     path     : 'admin/examtypes',
@@ -62,6 +66,9 @@ const routes = [
     
     FuseSharedModule,
   ],
-  declarations: [AlgorithmComponent, ChaptersComponent, SectionsComponent, QuestionsComponent, ExamtypesComponent, AlgorithmsComponent]
+  declarations: [AlgorithmComponent, ChaptersComponent, SectionsComponent, QuestionsComponent, ExamtypesComponent, AlgorithmsComponent],
+  providers: [
+    AlgorithmsService
+  ]
 })
 export class AdminModule { }
