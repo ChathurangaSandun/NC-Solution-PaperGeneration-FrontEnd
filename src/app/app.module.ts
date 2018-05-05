@@ -22,7 +22,7 @@ import { AuthenticationModule } from './main/authentication/authentication.modul
 const appRoutes: Routes = [   
     {
         path      : '',
-        redirectTo: 'admin/algorithms',
+        redirectTo: 'auth/login',
         pathMatch: 'full'
 
      },
@@ -30,6 +30,10 @@ const appRoutes: Routes = [
     //     path      : '',
     //     redirectTo: 'sample'
     // },
+    {
+        path      : 'auth', 
+        loadChildren: './main/authentication/authentication.module#AuthenticationModule'
+    },
     {
         path      : 'admin', 
         loadChildren: './main/content/admin/admin.module#AdminModule'

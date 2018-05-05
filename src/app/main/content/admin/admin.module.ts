@@ -40,10 +40,6 @@ const routes = [
     path     : 'admin/questions',
     component: QuestionsComponent      
   },
-  {
-      path      : '**',
-      redirectTo: '/sample'
-  }
 ];
 
 

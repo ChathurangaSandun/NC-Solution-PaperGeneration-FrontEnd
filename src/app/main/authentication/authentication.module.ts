@@ -15,8 +15,18 @@ import { MailConfirmComponent } from "./mail-confirm/mail-confirm.component";
 import { MailConfirmModule } from "./mail-confirm/mail-confirm.module";
 import { ResetPasswordModule } from "./reset-password/reset-password.module";
 
+
+const routes = [
+  {
+      path     : 'auth/login',
+      component: LoginComponent      
+  },
+];
+
+
 @NgModule({
   imports: [
+    RouterModule.forChild(routes),
     LoginModule,
     RegisterModule,
     LockModule,
