@@ -11,9 +11,10 @@ import "rxjs/add/observable/fromEvent";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
-import { fuseAnimations } from "@fuse/animations";
-import { FuseUtils } from "@fuse/utils";
+import { fuseAnimations } from "../../../../../@fuse/animations";
+import { FuseUtils } from "../../../../../@fuse/utils";
 import { Algorithm } from "../algorithm/algorithm.model";
+import { AlgorithmsService } from "./algorithms.service";
 
 @Component({
   selector: "app-algorithms",
@@ -21,44 +22,132 @@ import { Algorithm } from "../algorithm/algorithm.model";
   styleUrls: ["./algorithms.component.scss"]
 })
 export class AlgorithmsComponent implements OnInit {
-  // displayedColumns = ['id', 'name', 'description'];
-  // dataSource = new MatTableDataSource(ELEMENT_DATA);
-
+  dataSource: any;
   displayedColumns = ["id", "name", "description"];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);  
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild("filter") filter: ElementRef;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() 
-  {
-    console.log(ELEMENT_DATA);
+  constructor(private algorithmsService: AlgorithmsService) {}
 
+  ngOnInit() {
+    this.dataSource = new FilesDataSource(
+      this.algorithmsService,
+      this.paginator,
+      this.sort
+    );
+    Observable.fromEvent(this.filter.nativeElement, "keyup")
+      .debounceTime(150)
+      .distinctUntilChanged()
+      .subscribe(() => {
+        if (!this.dataSource) {
+          return;
+        }
+        this.dataSource.filter = this.filter.nativeElement.value;
+      });
+  }
+}
+
+export class FilesDataSource extends DataSource<any> {
+  _filterChange = new BehaviorSubject("");
+  _filteredDataChange = new BehaviorSubject("");
+
+  get filteredData(): any {
+    return this._filteredDataChange.value;
   }
 
-  ngOnInit() {}
+  set filteredData(value: any) {
+    this._filteredDataChange.next(value);
+  }
+
+  get filter(): string {
+    return this._filterChange.value;
+  }
+
+  set filter(filter: string) {
+    this._filterChange.next(filter);
+  }
+
+  constructor(
+    private algorithmService: AlgorithmsService,
+    private _paginator: MatPaginator,
+    private _sort: MatSort
+  ) {
+    super();
+    this.filteredData = this.algorithmService.algorithms;
+  }
+
+  /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<any[]> {
+    const displayDataChanges = [
+      this.algorithmService.onAlgorithmChanged,
+      this._paginator.page,
+      this._filterChange,
+      this._sort.sortChange
+    ];
+    return Observable.merge(...displayDataChanges).map(() => {
+      let data = this.algorithmService.algorithms.slice();
+
+      data = this.filterData(data);
+
+      this.filteredData = [...data];
+
+      data = this.sortData(data);
+
+      // Grab the page's slice of data.
+      const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+      return data.splice(startIndex, this._paginator.pageSize);
+    });
+  }
+
+  filterData(data) {
+    if (!this.filter) {
+      return data;
+    }
+    return FuseUtils.filterArrayByString(data, this.filter);
+  }
+
+  sortData(data): any[] {
+    if (!this._sort.active || this._sort.direction === "") {
+      return data;
+    }
+
+    return data.sort((a, b) => {
+      let propertyA: number | string = "";
+      let propertyB: number | string = "";
+
+      switch (this._sort.active) {
+        case "id":
+          [propertyA, propertyB] = [a.id, b.id];
+          break;
+        // case 'reference':
+        //     [propertyA, propertyB] = [a.reference, b.reference];
+        //     break;
+        // case 'customer':
+        //     [propertyA, propertyB] = [a.customer.firstName, b.customer.firstName];
+        //     break;
+        // case 'total':
+        //     [propertyA, propertyB] = [a.total, b.total];
+        //     break;
+        // case 'payment':
+        //     [propertyA, propertyB] = [a.payment.method, b.payment.method];
+        //     break;
+        // case 'status':
+        //     [propertyA, propertyB] = [a.status[0].name, b.status[0].name];
+        //     break;
+        // case 'date':
+        //     [propertyA, propertyB] = [a.date, b.date];
+        //     break;
+      }
+
+      const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+      const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+      return (
+        (valueA < valueB ? -1 : 1) * (this._sort.direction === "asc" ? 1 : -1)
+      );
+    });
+  }
+
+  disconnect() {}
 }
-// export interface Algorithm {
-//   id: number;
-//   name: string;
-//   description: string;
-// }
-
-// const ELEMENT_DATA: Algorithm[] = [
-//   {id: 1, name: 'aaaaa', description: 'aaa'},
-//   {id: 2, name: 'bbbbb', description: 'bbb'},
-//   {id: 3, name: 'ccccc', description: 'ccc'},
-
-// ];
-
-
-const ELEMENT_DATA: Algorithm[] = [
-  new Algorithm ( 1, "Algo1", "Algo1" ),
-  new Algorithm ( 2, "Algo2", "Algo2" ),
-  new Algorithm ( 3, "Algo3", "Algo3" ),
-  new Algorithm ( 4, "Algo4", "Algo4" ),
-  new Algorithm ( 5, "Algo5", "Algo5" ),
-  new Algorithm ( 6, "Algo6", "Algo6" ),
-  
-];
