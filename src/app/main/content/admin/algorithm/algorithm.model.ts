@@ -6,9 +6,9 @@ export class Algorithm {
 
     public constructor(algorithm?){
         algorithm = algorithm || {};
-        this.Id = algorithm.id || 0;
-        this.Name = algorithm.name || '';
-        this.Description = algorithm.description || '';
+        this.Id = algorithm.Id || 0;
+        this.Name = algorithm.Name || '';
+        this.Description = algorithm.Description || '';
     }
 
     

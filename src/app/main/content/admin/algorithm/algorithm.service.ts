@@ -50,9 +50,11 @@ export class AlgorithmService {
             }
             else
             {
-                this.http.get('api/algorithms/' + this.routeParams.id)
+                debugger
+                this.http.get('http://localhost:59383/api/algorithms/' + this.routeParams.id)
                     .subscribe((response: any) => {
                         this.algorithm = response;
+                        debugger
                         this.onAlgorithmChanged.next(this.algorithm);
                         resolve(response);
                     }, reject);
@@ -63,7 +65,7 @@ export class AlgorithmService {
     saveAlgorithm(algorithm)
     {
         return new Promise((resolve, reject) => {
-            this.http.post('api/algorithms/' + algorithm.Id, algorithm)
+            this.http.post('http://localhost:59383/api/algorithms/' + algorithm.Id, algorithm)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
@@ -73,7 +75,7 @@ export class AlgorithmService {
     addAlgorithm(algorithm)
     {
         return new Promise((resolve, reject) => {
-            this.http.post('api/algorithms', algorithm)
+            this.http.post('http://localhost:59383/api/algorithms', algorithm)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);

@@ -38,7 +38,7 @@ import { AlgorithmService } from "./algorithm.service";
   animations: fuseAnimations
 })
 export class AlgorithmComponent implements OnInit, OnDestroy {
-  algorihtm: Algorithm;
+  algorihtm = new Algorithm();
   onAlgorithmChanged: Subscription;
   pageType: string;
   algorithmForm: FormGroup;
@@ -53,6 +53,7 @@ export class AlgorithmComponent implements OnInit, OnDestroy {
     this.onAlgorithmChanged = this.algorithmService.onAlgorithmChanged.subscribe(
       algorihtm => {
         if (algorihtm) {
+          debugger
           this.algorihtm = new Algorithm(algorihtm);
           this.pageType = "edit";
         } else {
@@ -72,9 +73,9 @@ export class AlgorithmComponent implements OnInit, OnDestroy {
 
   createAlgorithmForm() {
     return this.formBuilder.group({
-      id: [this.algorihtm.Id],
-      name: [this.algorihtm.Name],
-      description: [this.algorihtm.Description]
+      Id: [this.algorihtm.Id],
+      Name: [this.algorihtm.Name],
+      Description: [this.algorihtm.Description]
     });
   }
 

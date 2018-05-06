@@ -36,7 +36,7 @@ export class AlgorithmsService implements Resolve<any> {
   getAlgorithms(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http
-        .get("https://ncspapergeneration.azurewebsites.net/api/algorithms")
+        .get("http://localhost:59383/api/algorithms")
         .subscribe((response: any) => {
           this.algorithms = response;
           this.onAlgorithmChanged.next(this.algorithms);          
