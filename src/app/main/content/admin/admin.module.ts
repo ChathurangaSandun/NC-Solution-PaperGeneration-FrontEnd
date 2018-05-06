@@ -16,7 +16,7 @@ import {
   MatSelectModule,
   MatSortModule,
   MatTableModule,
-  MatTabsModule
+  MatTabsModule,  
 } from "@angular/material";
 
 import { NgxChartsModule } from "@swimlane/ngx-charts";
@@ -42,7 +42,9 @@ const routes = [
   {
     path: "admin/algorithm/:id",
     component: AlgorithmComponent,
-  
+    resolve: {
+      data: AlgorithmService
+    }
   },
   {
     path: "admin/examtypes",
@@ -77,8 +79,7 @@ const routes = [
     MatSelectModule,
     MatSortModule,
     MatTableModule,
-    MatTabsModule,
-
+    MatTabsModule,    
     FuseSharedModule
   ],
   declarations: [

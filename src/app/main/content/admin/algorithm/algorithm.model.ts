@@ -4,13 +4,12 @@ export class Algorithm {
     public Name: string;
     public Description: string;
 
-    public constructor(
-        id: number,
-        name: string,
-        description: string
-    ){
-        this.Id = id
-        this.Name = name;
-        this.Description = description;
+    public constructor(algorithm?){
+        algorithm = algorithm || {};
+        this.Id = algorithm.id || 0;
+        this.Name = algorithm.name || '';
+        this.Description = algorithm.description || '';
     }
+
+    
 }

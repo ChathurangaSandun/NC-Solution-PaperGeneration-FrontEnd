@@ -22,7 +22,7 @@ export const navigation = [
                         'id'        : 'algorithm',
                         'title'     : 'Algorithm',
                         'type'      : 'item',
-                        'url'       : '/admin/Algorithm',
+                        'url'       : '/admin/Algorithm/new',
                         'exactMatch': true
                     }
                 ]

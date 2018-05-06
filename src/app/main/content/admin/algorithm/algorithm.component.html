@@ -23,8 +23,7 @@
                     <img *ngIf="!product.images[0]" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
                 </div> -->
 
-                <div fxLayout="column" fxLayoutAlign="start start"
-                     *fuseIfOnDom >
+                <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom>
                     <div class="h2" *ngIf="pageType ==='edit'">
                         {{algorithm.name}}
                     </div>
@@ -38,17 +37,13 @@
             </div>
             <!-- / APP TITLE -->
 
-            <button mat-raised-button
-                    class="save-product-button mat-white-bg mt-16 mt-sm-0"
-                    [disabled]="1 !== 1"
-                    *ngIf="pageType ==='new'" (click)="addAlgorithm()">
+            <button mat-raised-button class="save-product-button mat-white-bg mt-16 mt-sm-0" [disabled]="1 !== 1" *ngIf="pageType ==='new'"
+                (click)="addAlgorithm()">
                 <span>ADD</span>
             </button>
 
-            <button mat-raised-button
-                    class="save-product-button mat-white-bg mt-16 mt-sm-0"
-                    [disabled]=" 1 === 1"
-                    *ngIf="pageType ==='edit'" (click)="saveAlgorithm()">
+            <button mat-raised-button class="save-product-button mat-white-bg mt-16 mt-sm-0" [disabled]=" 1 === 1" *ngIf="pageType ==='edit'"
+                (click)="saveAlgorithm()">
                 <span>SAVE</span>
             </button>
         </div>
@@ -58,7 +53,26 @@
         <div class="content-card mat-white-bg">
 
             <!-- CONTENT -->
-            
+            <div class="content">
+                <form name="productForm" [formGroup]="algorithmForm" class="product w-100-p" fxLayout="column" fxFlex>
+                    <mat-tab-group>
+                        <mat-tab label="Basic Info">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <mat-form-field class="w-100-p">
+                                    <input matInput name="name" 
+                                        formControlName="name" 
+                                        placeholder="Algorithm Name" 
+                                        required>
+                                </mat-form-field>
+                                <mat-form-field class="w-100-p">
+                                    <textarea matInput name="description" formControlName="description" placeholder="Algorithm Description" rows="5">
+                                    </textarea>
+                                </mat-form-field>
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+                </form>
+            </div>
             <!-- / CONTENT -->
 
         </div>

@@ -10,11 +10,74 @@ export class AlgorithmService {
 
   routeParams: any;
   algorithm: any;
-  onProductChanged: BehaviorSubject<any> = new BehaviorSubject({});
+  onAlgorithmChanged: BehaviorSubject<any> = new BehaviorSubject({});
   
   constructor(
     private http: HttpClient
   ){ }
   
+  /**
+     * Resolve
+     * @param {ActivatedRouteSnapshot} route
+     * @param {RouterStateSnapshot} state
+     * @returns {Observable<any> | Promise<any> | any}
+     */
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any
+    {
+
+        this.routeParams = route.params;
+
+        return new Promise((resolve, reject) => {
+
+            Promise.all([
+                this.getAlgorithm()
+            ]).then(
+                () => {
+                    resolve();
+                },
+                reject
+            );
+        });
+    }
+
+    getAlgorithm(): Promise<any>
+    {
+        return new Promise((resolve, reject) => {
+            if ( this.routeParams.id === 'new' )
+            {
+                this.onAlgorithmChanged.next(false);
+                resolve(false);
+            }
+            else
+            {
+                this.http.get('api/algorithms/' + this.routeParams.id)
+                    .subscribe((response: any) => {
+                        this.algorithm = response;
+                        this.onAlgorithmChanged.next(this.algorithm);
+                        resolve(response);
+                    }, reject);
+            }
+        });
+    }
+
+    saveAlgorithm(algorithm)
+    {
+        return new Promise((resolve, reject) => {
+            this.http.post('api/algorithms/' + algorithm.Id, algorithm)
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+    }
+
+    addAlgorithm(algorithm)
+    {
+        return new Promise((resolve, reject) => {
+            this.http.post('api/algorithms', algorithm)
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+    }
 
 }
