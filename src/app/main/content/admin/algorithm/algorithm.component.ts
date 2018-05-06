@@ -52,12 +52,10 @@ export class AlgorithmComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.onAlgorithmChanged = this.algorithmService.onAlgorithmChanged.subscribe(
       algorihtm => {
-        if (algorihtm) {
-          debugger
+        if (algorihtm) {          
           this.algorihtm = new Algorithm(algorihtm);
           this.pageType = "edit";
-        } else {
-          debugger;
+        } else {          
           this.pageType = "new";
           this.algorihtm = new Algorithm();
         }
@@ -79,12 +77,12 @@ export class AlgorithmComponent implements OnInit, OnDestroy {
     });
   }
 
-  saveAlgorithm() {
-    const data = this.algorithmForm.getRawValue();
-    data.handle = FuseUtils.handleize(data.name);
+  saveAlgorithm() {    
+    const data = this.algorithmForm.getRawValue();    
     this.algorithmService.saveAlgorithm(data).then(() => {
       // Trigger the subscription with new data
       this.algorithmService.onAlgorithmChanged.next(data);
+      console.log('saved !');
 
       // Show the success message
       // this.snackBar.open("Product saved", "OK", {
@@ -94,13 +92,12 @@ export class AlgorithmComponent implements OnInit, OnDestroy {
     });
   }
 
-  addAlgorithm() {
-    debugger;
+  addAlgorithm() {    
     const data = this.algorithmForm.getRawValue();    
     this.algorithmService.addAlgorithm(data).then(() => {
       // Trigger the subscription with new data
       this.algorithmService.onAlgorithmChanged.next(data);
-
+      console.log('created !');
       // Show the success message
       // this.snackBar.open("Algorithm added", "OK", {
       //   verticalPosition: "top",

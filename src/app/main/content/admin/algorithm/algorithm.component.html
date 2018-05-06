@@ -25,7 +25,7 @@
 
                 <div fxLayout="column" fxLayoutAlign="start start" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     <div class="h2" *ngIf="pageType ==='edit'">
-                        {{algorithm.Name}}
+                        <!-- {{algorithm.Name}} -->
                     </div>
                     <div class="h2" *ngIf="pageType ==='new'">
                         New Algorithm
@@ -42,7 +42,7 @@
                 <span>ADD</span>
             </button>
 
-            <button mat-raised-button class="save-product-button mat-white-bg mt-16 mt-sm-0" [disabled]="algorithmForm.invalid || algorithmForm.pristine" *ngIf="pageType ==='edit'"
+            <button mat-raised-button class="save-product-button mat-white-bg mt-16 mt-sm-0"  *ngIf="pageType ==='edit'"
                 (click)="saveAlgorithm()">
                 <span>SAVE</span>
             </button>
