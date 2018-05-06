@@ -12,8 +12,8 @@
 
             <!-- APP TITLE -->
             <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">blur_linear</mat-icon>
-                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Algorithms</span>
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom >blur_linear</mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom>Algorithms</span>
             </div>
             <!-- / APP TITLE -->
 
@@ -39,7 +39,7 @@
         <div class="content-card mat-white-bg">
             <mat-table class="algorithm-table" 
                 #table [dataSource]="dataSource" 
-                matSort [@animateStagger]="{value:'50'}" 
+                matSort 
                 fusePerfectScrollbar>
 
                 <!-- ID Column -->
@@ -70,7 +70,7 @@
                 <mat-row *cdkRowDef="let algorithm; columns: displayedColumns;" 
                     class="table-row" 
                     matRipple 
-                    [routerLink]="'/apps'">
+                    [routerLink]="'/admin/algorithm' + algorithm.Id">
                 </mat-row>
 
 

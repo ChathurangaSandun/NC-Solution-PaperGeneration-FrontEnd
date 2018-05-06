@@ -21,7 +21,11 @@ import { FuseUtils } from "@fuse/utils";
 })
 export class AlgorithmComponent implements OnInit {
 
+  pageType = 'new';
+  
   constructor() {}
 
   ngOnInit() {}
+  addAlgorithm() {}
+  saveAlgorithm(){}
 }

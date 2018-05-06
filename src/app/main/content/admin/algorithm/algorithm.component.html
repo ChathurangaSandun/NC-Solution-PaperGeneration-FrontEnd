@@ -1,1 +1,69 @@
-<p>working algorithm</p>
+<div id="algorithm" class="page-layout carded fullwidth" fusePerfectScrollbar>
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="'/admin/algorithms'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <!-- image -->
+                <!-- <div class="product-image mr-8 mr-sm-16" *fuseIfOnDom >
+                    <img *ngIf="product.images[0]" [src]="product.images[0].url">
+                    <img *ngIf="!product.images[0]" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
+                </div> -->
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                     *fuseIfOnDom >
+                    <div class="h2" *ngIf="pageType ==='edit'">
+                        {{algorithm.name}}
+                    </div>
+                    <div class="h2" *ngIf="pageType ==='new'">
+                        New Algorithm
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>Algorithm Detail</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <button mat-raised-button
+                    class="save-product-button mat-white-bg mt-16 mt-sm-0"
+                    [disabled]="1 !== 1"
+                    *ngIf="pageType ==='new'" (click)="addAlgorithm()">
+                <span>ADD</span>
+            </button>
+
+            <button mat-raised-button
+                    class="save-product-button mat-white-bg mt-16 mt-sm-0"
+                    [disabled]=" 1 === 1"
+                    *ngIf="pageType ==='edit'" (click)="saveAlgorithm()">
+                <span>SAVE</span>
+            </button>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg">
+
+            <!-- CONTENT -->
+            
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+</div>

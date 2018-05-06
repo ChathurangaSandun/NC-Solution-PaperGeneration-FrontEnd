@@ -9,9 +9,23 @@ export const navigation = [
                 'id'   : 'algorithm',
                 'title': 'Algorithm',
                 'translate': 'NAV.ALGORITHM.TITLE',
-                'type' : 'item',
+                'type' : 'collapse',
                 'icon' : 'blur_linear',
-                'url'  : '/admin/algorithms'
+                'children' : [
+                    {
+                        'id'   : 'algorithms',
+                        'title': 'Algorithms',
+                        'type' : 'item',
+                        'url'  : '/admin/algorithms'
+                    },
+                    {
+                        'id'        : 'algorithm',
+                        'title'     : 'Algorithm',
+                        'type'      : 'item',
+                        'url'       : '/admin/Algorithm',
+                        'exactMatch': true
+                    }
+                ]
             },
             {
                 'id'   : 'examType',
