@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { MatTableDataSource, MatPaginator, MatSort } from "@angular/material";
+import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from "@angular/material";
 import { DataSource } from "@angular/cdk/collections";
 
 import "rxjs/add/operator/startWith";
@@ -11,15 +11,16 @@ import "rxjs/add/observable/fromEvent";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
-import { fuseAnimations } from "../../../../../@fuse/animations";
-import { FuseUtils } from "../../../../../@fuse/utils";
+import { fuseAnimations } from "@fuse/animations";
+import { FuseUtils } from "@fuse/utils";
 import { Algorithm } from "../algorithm/algorithm.model";
 import { AlgorithmsService } from "./algorithms.service";
 
 @Component({
   selector: "app-algorithms",
   templateUrl: "./algorithms.component.html",
-  styleUrls: ["./algorithms.component.scss"]
+  styleUrls: ["./algorithms.component.scss"],
+  animations   : fuseAnimations
 })
 export class AlgorithmsComponent implements OnInit {
   dataSource: any;
