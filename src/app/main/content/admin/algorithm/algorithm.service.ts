@@ -8,14 +8,14 @@ import {
 
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { environment } from "../../../../../environments/environment";
 
 @Injectable()
 export class AlgorithmService {
   routeParams: any;
   algorithm: any;
   onAlgorithmChanged: BehaviorSubject<any> = new BehaviorSubject({});
-  // baseUrl = "http://localhost:59383/";
-  baseUrl = "https://ncspapergeneration.azurewebsites.net/"
+  baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

@@ -5,5 +5,8 @@
 
 export const environment = {
     production: false,
-    hmr       : false
+    hmr       : false,
+    apiUrl: "http://localhost:59383/",
+    // apiUrl: "https://ncspapergeneration.azurewebsites.net/",
+
 };
