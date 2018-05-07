@@ -8,12 +8,13 @@ import {
 
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { environment } from "../../../../environments/environment";
 
 @Injectable()
 export class LoginService {
   routeParams: any;
   onLoginUserChanged: BehaviorSubject<any> = new BehaviorSubject({});
-  baseUrl = "http://localhost:59383/";
+  baseUrl = environment.apiUrl;
   //baseUrl = "https://ncspapergeneration.azurewebsites.net/"
 
   constructor(private http: HttpClient) { }
