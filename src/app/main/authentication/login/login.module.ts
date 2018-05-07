@@ -6,7 +6,7 @@ import { LoginComponent } from './login.component';
 import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 
-
+import { LoginService } from "./login.service";
 
 const routes = [
   {
@@ -27,6 +27,7 @@ const routes = [
 
     FuseSharedModule
   ],
+  providers:[LoginService],
   declarations: [LoginComponent]
 })
 export class LoginModule { }
