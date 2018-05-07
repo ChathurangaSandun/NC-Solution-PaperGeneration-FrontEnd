@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-
+import { Location } from "@angular/common";
 import { FuseConfigService } from "@fuse/services/config.service";
 import { fuseAnimations } from "@fuse/animations";
+import {Router} from "@angular/router";
+import { LoginService } from "./login.service";
 
 @Component({
   selector: "app-login",
@@ -12,10 +14,14 @@ import { fuseAnimations } from "@fuse/animations";
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginFormErrors: any;
-
+  nicPattern = "^[a-z]{6}$";//"^[0-9]{1,9}[a-zA-Z]{1}$";
+  loginFailedError = false;;
   constructor(
     private fuseConfig: FuseConfigService,
-    private formBuilder: FormBuilder
+    private loginService: LoginService,
+    private formBuilder: FormBuilder,    
+    private location: Location,
+    private router: Router
   ) {
     this.fuseConfig.setConfig({
       layout: {
@@ -26,14 +32,15 @@ export class LoginComponent implements OnInit {
     });
 
     this.loginFormErrors = {
-      email: {},
+      loginusername: {},
       password: {}
     };
   }
 
   ngOnInit() {
+    
     this.loginForm = this.formBuilder.group({
-      email: ["", [Validators.required, Validators.email]],
+      loginusername: ["", [Validators.required]],
       password: ["", Validators.required]
     });
 
@@ -58,5 +65,21 @@ export class LoginComponent implements OnInit {
         this.loginFormErrors[field] = control.errors;
       }
     }
+  }
+
+  myEvent() {
+    const data = this.loginForm.getRawValue();
+
+    this.loginService.loginUser(data).then((as) => {
+
+      if(as != null){
+        this.router.navigate(['admin/algorithms']);
+      }
+      else{
+        this.loginFailedError = true;
+      }
+    });
+
+
   }
 }
