@@ -5,6 +5,7 @@ import {
   Resolve,
   RouterStateSnapshot
 } from "@angular/router";
+import { environment } from "../../../../../environments/environment";
 
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
@@ -13,8 +14,7 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 export class AlgorithmsService implements Resolve<any> {
   algorithms: any[];
   onAlgorithmChanged: BehaviorSubject<any> = new BehaviorSubject({});
-  // baseUrl = "http://localhost:59383/";
-  baseUrl = "https://ncspapergeneration.azurewebsites.net/"
+  baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -41,7 +41,7 @@ export class AlgorithmsService implements Resolve<any> {
         .get(this.baseUrl + "api/algorithms")
         .subscribe((response: any) => {
           this.algorithms = response;
-          this.onAlgorithmChanged.next(this.algorithms);          
+          this.onAlgorithmChanged.next(this.algorithms);
           resolve(response);
         }, reject);
     });
