@@ -7,7 +7,8 @@ import { fuseAnimations } from '@fuse/animations';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.scss']
+  styleUrls: ['./forgot-password.component.scss'],
+  animations: fuseAnimations
 })
 export class ForgotPasswordComponent implements OnInit {
 

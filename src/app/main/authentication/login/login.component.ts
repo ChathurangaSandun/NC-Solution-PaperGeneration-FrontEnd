@@ -7,7 +7,8 @@ import { fuseAnimations } from "@fuse/animations";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
+  styleUrls: ["./login.component.scss"],
+  animations: fuseAnimations
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
