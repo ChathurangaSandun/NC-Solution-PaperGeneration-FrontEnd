@@ -118,7 +118,7 @@ export class FilesDataSource extends DataSource<any> {
       let propertyB: number | string = "";
 
       switch (this._sort.active) {
-        case "id":
+        case "Id":
           [propertyA, propertyB] = [a.id, b.id];
           break;
         // case 'reference':

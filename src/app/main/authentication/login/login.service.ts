@@ -14,8 +14,7 @@ import { environment } from "../../../../environments/environment";
 export class LoginService {
   routeParams: any;
   onLoginUserChanged: BehaviorSubject<any> = new BehaviorSubject({});
-  baseUrl = environment.apiUrl;
-  //baseUrl = "https://ncspapergeneration.azurewebsites.net/"
+  baseUrl = environment.apiUrl;  
 
   constructor(private http: HttpClient) { }
 

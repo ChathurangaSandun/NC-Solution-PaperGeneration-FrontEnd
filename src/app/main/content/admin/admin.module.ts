@@ -17,6 +17,7 @@ import {
   MatSortModule,
   MatTableModule,
   MatTabsModule,  
+  //MatSnackBar,
 } from "@angular/material";
 
 import { NgxChartsModule } from "@swimlane/ngx-charts";
@@ -30,6 +31,9 @@ import { ExamtypesComponent } from "./examtypes/examtypes.component";
 import { AlgorithmsComponent } from "./algorithms/algorithms.component";
 import { AlgorithmsService } from "./algorithms/algorithms.service";
 import { AlgorithmService } from "./algorithm/algorithm.service";
+import { ChapterComponent } from './chapter/chapter.component';
+import { ChapterService } from "./chapter/chapter.service";
+import { ChaptersService } from "./chapters/chapters.service";
 
 const routes = [
   {
@@ -40,7 +44,7 @@ const routes = [
     }
   },
   {
-    path: "admin/algorithm/:id",
+    path: "admin/algorithms/:id",
     component: AlgorithmComponent,
     resolve: {
       data: AlgorithmService
@@ -52,7 +56,17 @@ const routes = [
   },
   {
     path: "admin/chapters",
-    component: ChaptersComponent
+    component: ChaptersComponent,
+    resolve: {
+      data: ChaptersService
+    }
+  },
+  {
+    path: "admin/chapters/:id",
+    component: ChapterComponent,
+    resolve: {
+      data: ChapterService
+    }
   },
   {
     path: "admin/sections",
@@ -79,7 +93,8 @@ const routes = [
     MatSelectModule,
     MatSortModule,
     MatTableModule,
-    MatTabsModule,    
+    MatTabsModule,
+    //MatSnackBar,  
     FuseSharedModule
   ],
   declarations: [
@@ -88,8 +103,9 @@ const routes = [
     SectionsComponent,
     QuestionsComponent,
     ExamtypesComponent,
-    AlgorithmsComponent
+    AlgorithmsComponent,
+    ChapterComponent
   ],
-  providers: [AlgorithmsService, AlgorithmService]
+  providers: [AlgorithmsService, AlgorithmService, ChapterService, ChaptersService]
 })
 export class AdminModule {}
