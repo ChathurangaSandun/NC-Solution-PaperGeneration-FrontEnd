@@ -22,7 +22,7 @@ export const navigation = [
                         'id'        : 'algorithm',
                         'title'     : 'Algorithm',
                         'type'      : 'item',
-                        'url'       : '/admin/Algorithm/new',
+                        'url'       : '/admin/Algorithms/new',
                         'exactMatch': true
                     }
                 ]
@@ -39,9 +39,23 @@ export const navigation = [
                 'id'   : 'chapter',
                 'title': 'Chapter',
                 'translate': 'NAV.CHAPTER.TITLE',
-                'type' : 'item',
+                'type' : 'collapse',
                 'icon' : 'blur_linear',
-                'url'  : '/admin/chapters',
+                'children' : [
+                    {
+                        'id'   : 'chapters',
+                        'title': 'Chapters',
+                        'type' : 'item',
+                        'url'  : '/admin/chapters'
+                    },
+                    {
+                        'id'        : 'chapter',
+                        'title'     : 'chapter',
+                        'type'      : 'item',
+                        'url'       : '/admin/chapters/new',
+                        'exactMatch': true
+                    }
+                ]
             },
             {
                 'id'   : 'section',

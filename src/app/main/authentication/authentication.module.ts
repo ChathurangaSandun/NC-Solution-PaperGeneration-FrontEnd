@@ -21,6 +21,10 @@ const routes = [
       path     : 'auth/login',
       component: LoginComponent      
   },
+  {
+    path: 'auth/forgotpassword',
+    component: ForgotPasswordComponent
+  }
 ];
 
 

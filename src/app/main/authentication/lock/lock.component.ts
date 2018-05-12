@@ -8,7 +8,8 @@ import { fuseAnimations } from '@fuse/animations';
 @Component({
   selector: 'app-lock',
   templateUrl: './lock.component.html',
-  styleUrls: ['./lock.component.scss']
+  styleUrls: ['./lock.component.scss'],
+  animations: fuseAnimations
 })
 export class LockComponent implements OnInit {
 
