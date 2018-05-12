@@ -7,7 +7,8 @@ import { fuseAnimations } from '@fuse/animations';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  animations: fuseAnimations
 })
 export class RegisterComponent implements OnInit {
 

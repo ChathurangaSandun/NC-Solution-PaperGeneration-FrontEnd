@@ -6,7 +6,8 @@ import { fuseAnimations } from "@fuse/animations";
 @Component({
   selector: "app-mail-confirm",
   templateUrl: "./mail-confirm.component.html",
-  styleUrls: ["./mail-confirm.component.scss"]
+  styleUrls: ["./mail-confirm.component.scss"],
+  animations: fuseAnimations
 })
 export class MailConfirmComponent {
   constructor(private fuseConfig: FuseConfigService) {

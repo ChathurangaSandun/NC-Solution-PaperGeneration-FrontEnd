@@ -21,7 +21,7 @@
         }
     }
 
-    .algorithm-table {
+    .chapter-table {
         flex: 1 1 auto;
         border-bottom: 1px solid rgba(0, 0, 0, .12);
         overflow: auto;
@@ -30,10 +30,10 @@
             min-height: 64px;
         }
 
-        .product {
+        .table-row {
             position: relative;
             cursor: pointer;
-            height: 84px;
+            // height: 84px;
         }
 
         .mat-cell {
